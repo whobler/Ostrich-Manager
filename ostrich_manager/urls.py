@@ -15,7 +15,11 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from ostrich_app.views import *
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^$', ShowBreeders.as_view(), name='breeders'),
+    url(r'^login/$', LoginView.as_view(), name='login'),
+    url(r'^logout/$', logout, name='logout')
 ]

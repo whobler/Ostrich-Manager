@@ -19,7 +19,16 @@ from ostrich_app.views import *
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^breeders/^$', ShowBreeders.as_view(), name='breeders'),
+
+    url(r'^$', HomePage.as_view(), name='home'),
+    url(r'^breeders/$', Breeders.as_view(), name='breeders'),
+    # url(r'babies^/$', Babies.as_view(), name='babies'),
+    # url(r'^eggs/$', Eggs.as_view(), name='eggs'),
+    # url(r'^warehouse/$', Warehouse.as_view(), name='warehouse'),
+    # url(r'^sold_birds/$', SoldBirds.as_view(), name='sold_birds'),
+    # url(r'^budget/$', Budget.as_view(), name='budget'),
+    # url(r'^seasons_statistics/$', SeasonsStatistics.as_view(), name='seasons_statistics'),
+
     url(r'^login/$', LoginView.as_view(), name='login'),
-    url(r'^logout/$', logout, name='logout'),
+    url(r'^logout/$', LogoutUser.as_view(), name='logout'),
 ]

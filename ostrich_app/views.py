@@ -12,18 +12,15 @@ from ostrich_app.models import OstrichBreeders
 from .serializers import OstrichBreedersSerializer
 
 
-def logout_user(request):
-    logout(request)
-    return HttpResponse("Successfully logged out")
-
-
-class ShowBreeders(APIView, LoginRequiredMixin):
-    login_url = '/login/'
-
+class HomePage(View):
     def get(self, request):
-        breeders = OstrichBreeders.objects.all()
-        serializer = OstrichBreedersSerializer(breeders, many=True, context={'request': request})
-        return Response(serializer.data)
+        return render(request, "index.html")
+
+
+class LogoutUser(View):
+    def get(self, request):
+        logout(request)
+        return render(request, "logout.html")
 
 
 class LoginView(View):
@@ -39,5 +36,14 @@ class LoginView(View):
             url = request.GET.get("next")
             if url:
                 return redirect(url)
-            return redirect(reverse('breeders'))
+            return redirect(reverse('home'))
         return HttpResponse("Username %s not found." % username)
+
+
+class Breeders(APIView, LoginRequiredMixin):
+    login_url = '/login/'
+
+    def get(self, request):
+        breeders = OstrichBreeders.objects.all()
+        serializer = OstrichBreedersSerializer(breeders, many=True, context={'request': request})
+        return Response(serializer.data)

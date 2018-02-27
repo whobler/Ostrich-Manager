@@ -1,18 +1,92 @@
-<!doctype html>
+<!DOCTYPE html>
+<html lang="en">
 
-<html>
-    <head>
-        <meta charset="utf-8">
-    </head>
-    <body>
-        {% block content %}
+<head>
+    {% load static %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-            <h1>Ostrich Farm Manager</h1>
+    <title>Ostrich Manager</title>
 
-        {% endblock %}
 
-        {% block footer %}
-            <hr><hr><h5>Ostrich Manager ver: 0.0.1</h5>
-        {% endblock %}
-    </body>
+    <link href="../static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="{% static 'style.css' %}" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#">
+                        Ostrich Manager
+                    </a>
+                </li>
+                <li>
+                    <a href="#">Breeders</a>
+                </li>
+                <li>
+                    <a href="#">Babies</a>
+                </li>
+                <li>
+                    <a href="#">Eggs</a>
+                </li>
+                <li>
+                    <a href="#">Warehouse</a>
+                </li>
+                <li>
+                    <a href="#">Sold Birds</a>
+                </li>
+                <li>
+                    <a href="#">Budget</a>
+                </li>
+                <li>
+                    <a href="#">Seasons and statistics</a>
+                </li>
+
+            </ul>
+        </div>
+
+
+
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">Menu</a> <br><br>
+
+                {% block content %}
+                <h1>Ostrich Farm Manager</h1>
+
+                {% endblock %}
+
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <script src="../static/jquery/jquery.min.js"></script>
+
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+
+    {% block footer %}
+        <footer>
+            <div id="footer_text_box">Ostrich Manager ver: {{ version }}  </div>
+        </footer>
+    {% endblock %}
+
+</body>
+
 </html>

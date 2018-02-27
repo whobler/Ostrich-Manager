@@ -19,7 +19,7 @@ from ostrich_app.views import *
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', ShowBreeders.as_view(), name='breeders'),
+    url(r'^breeders/^$', ShowBreeders.as_view(), name='breeders'),
     url(r'^login/$', LoginView.as_view(), name='login'),
-    url(r'^logout/$', logout, name='logout')
+    url(r'^logout/$', logout, name='logout'),
 ]

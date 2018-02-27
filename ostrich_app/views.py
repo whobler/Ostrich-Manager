@@ -2,6 +2,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
+from django.urls import reverse
 from django.views import View
 
 from rest_framework.views import APIView
@@ -13,7 +14,7 @@ from .serializers import OstrichBreedersSerializer
 
 def logout_user(request):
     logout(request)
-    return HttpResponse("Succesfully logged out.")
+    return HttpResponse("Successfully logged out")
 
 
 class ShowBreeders(APIView, LoginRequiredMixin):
@@ -38,7 +39,5 @@ class LoginView(View):
             url = request.GET.get("next")
             if url:
                 return redirect(url)
-            return HttpResponse("Logged in.")
-        return HttpResponse("ERROR %s %s" % (username, password))
-
-
+            return redirect(reverse('breeders'))
+        return HttpResponse("Username %s not found." % username)

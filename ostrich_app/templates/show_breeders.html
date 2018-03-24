@@ -1,0 +1,34 @@
+<table>
+    <col style="width:350px">
+    <col style="width:30px">
+    <tbody id="show_breeders">
+
+    {% for breeder in breeders %}
+
+        <tr data-id="{{breeder.id}}" class="show_breeders_tr"
+            {% if breeder.is_alive == False %}
+                data-is_alive="False"
+                style="display: none;"
+            {% endif %}>
+            <td class="show_breeders_td">
+                {{ breeder.name }}
+                {% if breeder.is_alive == False %}
+                    (deceased)
+                {% endif %}
+            </td>
+            <td>
+                <button class="btn btn-success" id="modify_breeder_btn" data-id="{{breeder.id}}">modify</button>
+            </td>
+        </tr>
+
+        <tr style="display: none;">
+            <td><div>a</div></td>
+        </tr>
+
+    {% endfor %}
+    </tbody>
+</table>
+<script>
+    var breeder_count = ($('#show_breeders').children().length)/2;
+    $('#breeders_count_span').text(breeder_count);
+</script>

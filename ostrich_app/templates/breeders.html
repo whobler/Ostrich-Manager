@@ -1,0 +1,17 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+    <h2>Total number of breeders: <span id="breeders_count_span"></span></h2>
+    <h6>click on breeder's name to show more info</h6>
+    <button class="btn btn-secondary" id="add_breeder_btn">Add new</button>
+    <button class="btn btn-secondary" id="deceased_breeder_btn">Show deceased</button>
+    <hr>
+    <div id="show_add_breeder_form_div" style="display:none;"></div>
+    <hr>
+
+    <div id="show_breeder_list_div"></div>
+
+    {% load static %}
+    <script src="{% static 'breeders.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+    <h1>Ostrich babies and eggs. Total count: {{ eggs_babies_count }}</h1>
+    <h6>click on a egg/baby's number to show more info</h6>
+    <a href="/add_egg_baby/">
+        <button class="btn btn-secondary" id="add_egg_baby_btn">Add new</button>
+    </a>
+    <button class="btn btn-secondary" id="deceased_egg_baby_btn">Show deceased</button>
+
+    <hr>
+
+
+    <ul class="show_eggs_babies">
+        {% for egg_baby in eggs_babies %}
+
+            <li data-id="{{egg_baby.id}}"
+                {% if egg_baby.is_alive == False %}
+                    data-is_alive="False"
+                {% endif %}>
+                <div>
+                    ID: {{ egg_baby.id }}  NUMBER:{{ egg_baby.number }}
+                    {% if egg_baby.is_alive == False %}
+                        (deceased)
+                    {% endif %}
+                    <a href="/modify_egg_baby/{{egg_baby.id}}">modify</a>
+                </div>
+
+            </li>
+
+        {% endfor %}
+    </ul>
+    <div id="egg_baby_div">baby div is here</div>
+
+    {% load static %}
+    <script src="{% static 'show_eggs_babies.js' %}"></script>
+{% endblock %}

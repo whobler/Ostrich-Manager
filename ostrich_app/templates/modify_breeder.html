@@ -1,0 +1,8 @@
+<h1>Add a new breeder:</h1>
+<form id="add_breeder_form" method="post">
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+    </table>
+    <input type="submit" value="Add breeder" />
+</form>

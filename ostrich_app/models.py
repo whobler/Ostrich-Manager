@@ -5,14 +5,16 @@ class OstrichBreeders(models.Model):
     name = models.CharField(max_length=64, unique=True)
     birth_year = models.IntegerField()
     sex = models.IntegerField(choices=((1, 'female'), (2, 'male')))
-    description = models.CharField(max_length=2048, null=True)
+    description = models.TextField(null=True)
+    is_alive = models.BooleanField(default=True)
 
 
 class EggsBabies(models.Model):
     number = models.IntegerField()
     date_found = models.DateField()
     date_incubated = models.DateField()
-    description = models.CharField(max_length=2048, null=True)
+    sex = models.IntegerField(choices=((1, 'female'), (2, 'male')), null=True)
+    description = models.TextField(null=True)
     is_hatched = models.BooleanField(default=False)
     is_sold = models.BooleanField(default=False)
     is_alive = models.BooleanField(default=True)
